@@ -11,15 +11,27 @@ function onPaint({ context, lastMouse, Mouse }) {
   context.stroke();
 }
 
-function clear({ context, canvas }) {
+function clear({ context, canvas, predictResult }) {
   context.clearRect(0, 0, 280, 280);
   context.fillStyle = "white";
   context.fillRect(0, 0, canvas.width, canvas.height);
+  predictResult.innerText = "";
+}
+
+function predict({ canvas, predictResult }) {
+  const image = canvas.toDataURL("image/png");
+
+  axios.post(`${BASE_URL}/predict`, image).then(({ data }) => {
+    console.log(data);
+    predictResult.innerText = data[0];
+  });
 }
 
 (function() {
   const canvas = document.querySelector("#canvas");
   const clearButton = document.getElementById("clear");
+  const predictButton = document.getElementById("predict");
+  const predictResult = document.getElementById("result");
   const context = canvas.getContext("2d");
   const Mouse = { x: 0, y: 0 };
   const lastMouse = { x: 0, y: 0 };
@@ -63,7 +75,13 @@ function clear({ context, canvas }) {
 
   clearButton.addEventListener(
     "click",
-    () => clear({ context, canvas }),
+    () => clear({ context, canvas, predictResult }),
+    false
+  );
+
+  predictButton.addEventListener(
+    "click",
+    () => predict({ canvas, predictResult }),
     false
   );
 })();

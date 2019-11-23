@@ -26,6 +26,11 @@
             </section>
         </main>
 
+
+        <script src="{{url_for('static',filename='axios.min.js')}}"></script>
         <script src="{{url_for('static',filename='index.js')}}"></script>
+        <script type="text/javascript">
+            const BASE_URL = {{request.script_root|tojson|safe}};
+        </script>
     </body>
 </html>
