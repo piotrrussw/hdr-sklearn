@@ -1,0 +1,44 @@
+body {
+    background: f2f2f2;
+    color: #333333;
+    font-family: 'Muli', sans-serif;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.header {
+    display: flex;
+    justify-content: center;
+}
+.canvas-container, .action-container {
+    margin: 1rem 0;
+}
+#canvas {
+    border: 0.25rem solid #000;
+}
+.btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    margin: 1rem;
+    border-radius: 0.25rem;
+    color: #ffffff;
+    background: #9b9b9b;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+.btn-primary {
+    background: #a76ad7;
+}
+.results-container {
+    margin: 1.5rem 0 ;
+}
+.results-badge:not(:empty) {
+    background: #3d3838;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}

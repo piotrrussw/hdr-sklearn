@@ -60,3 +60,8 @@ for i in numpy.random.randint(0, high=len(testLabels), size=(10000,)):
 
 print("Wrongly predicted: ", str(wrongly_predicted))
 print("Tested: ", str(tested))
+
+with open('model.json', 'w') as outfile:
+    json.dump(model.to_json(), outfile)
+model.save_weights('weights.h5')
+

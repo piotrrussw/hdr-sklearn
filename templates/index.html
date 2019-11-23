@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Handwritten Digit Recognition</title>
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,500,600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    </head>
+
+    <body>
+        <header class="header">
+            <h2>Handwritten Digit Recognition</h2>
+        </header>
+
+        <main>
+            <section class="canvas-container">
+                <canvas id="canvas" width="240" height="240"></canvas>
+            </section>
+            <section class="action-container">
+                <button id="predict" class="btn btn-primary">Predict</button>
+                <button id="clear" class="btn">Clear</button>
+            </section>
+            <section class="results-container">
+               <span>Predicted result:</span>
+               <span id="result" class="results-badge"></span>  
+            </section>
+        </main>
+
+        <script src="{{url_for('static',filename='index.js')}}"></script>
+    </body>
+</html>
