@@ -4,7 +4,6 @@ from sklearn.metrics import classification_report
 from sklearn import datasets
 from skimage import exposure
 import numpy
-import imutils
 
 def init():
     # load the MNIST digits dataset
