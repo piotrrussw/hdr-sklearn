@@ -3,7 +3,7 @@ click
 Flask
 numpy
 scipy
-PIL
+Pillow
 sklearn
 skimage
 imageio
