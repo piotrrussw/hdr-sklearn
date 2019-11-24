@@ -1,9 +1,16 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
+from imageio import imread
+from PIL import Image
 import numpy as np
 import re
 import base64
+import sys
 import os
 
+sys.path.append(os.path.abspath("./model"))
+from model import *
+
+model = init()
 app = Flask(__name__)
 
 @app.route('/')
@@ -12,14 +19,24 @@ def index():
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
-    # parseImage(request.get_data())
+    parseImage(request.get_data())
+
     out = [[1]]
-    response = np.array_str(np.argmax(out, axis=1))
+    x = Image.open('output.png')
+    x = x.resize((8,8))
+    x.save('resized.png')
+    
+    x = imread('resized.png', pilmode='L')
+    x = np.invert(x)
+    x = x.reshape(8,8)
+    x = np.array(x).flatten()
 
-    return response
+    prediction = model.predict([x])[0]
+ 
+    return jsonify({'prediction': int(prediction)})
 
 
-def parseImage():
+def parseImage(imgData):
     imgstr = re.search(b'base64,(.*)', imgData).group(1)
     with open('output.png','wb') as output:
         output.write(base64.decodebytes(imgstr))

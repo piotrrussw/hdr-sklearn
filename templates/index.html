@@ -14,7 +14,7 @@
 
         <main>
             <section class="canvas-container">
-                <canvas id="canvas" width="240" height="240"></canvas>
+                <canvas id="canvas" width="256" height="256"></canvas>
             </section>
             <section class="action-container">
                 <button id="predict" class="btn btn-primary">Predict</button>
@@ -29,8 +29,5 @@
 
         <script src="{{url_for('static',filename='axios.min.js')}}"></script>
         <script src="{{url_for('static',filename='index.js')}}"></script>
-        <script type="text/javascript">
-            const BASE_URL = {{request.script_root|tojson|safe}};
-        </script>
     </body>
 </html>

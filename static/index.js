@@ -1,4 +1,4 @@
-function onPaint({ context, lastMouse, Mouse }) {
+function onPaint(context, lastMouse, Mouse) {
   context.lineWidth = context.lineWidth;
   context.lineJoin = "round";
   context.lineCap = "round";
@@ -11,19 +11,18 @@ function onPaint({ context, lastMouse, Mouse }) {
   context.stroke();
 }
 
-function clear({ context, canvas, predictResult }) {
+function clear(context, canvas, predictResult) {
   context.clearRect(0, 0, 280, 280);
   context.fillStyle = "white";
   context.fillRect(0, 0, canvas.width, canvas.height);
   predictResult.innerText = "";
 }
 
-function predict({ canvas, predictResult }) {
+function predict(canvas, predictResult) {
   const image = canvas.toDataURL("image/png");
 
-  axios.post(`${BASE_URL}/predict`, image).then(({ data }) => {
-    console.log(data);
-    predictResult.innerText = data[0];
+  axios.post('/predict', image).then(({ data }) => {
+    predictResult.innerText = data.prediction;
   });
 }
 
@@ -35,14 +34,14 @@ function predict({ canvas, predictResult }) {
   const context = canvas.getContext("2d");
   const Mouse = { x: 0, y: 0 };
   const lastMouse = { x: 0, y: 0 };
-  const paint = () => onPaint({ context, lastMouse, Mouse });
-  canvas.width = 280;
-  canvas.height = 280;
+  const paint = () => onPaint(context, lastMouse, Mouse);
+  canvas.width = 256;
+  canvas.height = 256;
 
   context.fillStyle = "white";
   context.fillRect(0, 0, canvas.width, canvas.height);
   context.color = "black";
-  context.lineWidth = 7;
+  context.lineWidth = 14;
   context.lineJoin = context.lineCap = "round";
 
   canvas.addEventListener(
@@ -75,13 +74,13 @@ function predict({ canvas, predictResult }) {
 
   clearButton.addEventListener(
     "click",
-    () => clear({ context, canvas, predictResult }),
+    () => clear(context, canvas, predictResult),
     false
   );
 
   predictButton.addEventListener(
     "click",
-    () => predict({ canvas, predictResult }),
+    () => predict(canvas, predictResult),
     false
   );
 })();

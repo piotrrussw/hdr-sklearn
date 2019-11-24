@@ -1,0 +1,10 @@
+appdirs
+click
+Flask
+numpy
+scipy
+PIL
+sklearn
+skimage
+imageio
+opencv-python
