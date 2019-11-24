@@ -7,4 +7,5 @@ Pillow
 sklearn
 scikit-image
 imageio
+opencv-python
 imutils
