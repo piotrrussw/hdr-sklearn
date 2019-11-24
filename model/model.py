@@ -5,7 +5,6 @@ from sklearn import datasets
 from skimage import exposure
 import numpy
 import imutils
-import cv2
 
 def init():
     # load the MNIST digits dataset
