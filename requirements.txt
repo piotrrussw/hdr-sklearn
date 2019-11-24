@@ -5,6 +5,6 @@ numpy
 scipy
 Pillow
 sklearn
-skimage
+scikit-image
 imageio
 opencv-python
